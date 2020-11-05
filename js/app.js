@@ -11,18 +11,17 @@ const ulList = document.querySelector('ul');
 //atvaizduojama galerija
 function showGallery() {
     genGallery();
-    btnShow.className="invisible ";
-};
+    btnShow.className = "invisible ";
+}
 
 //Galerijos perkrovimas sumaisant
 function mixGallery() {
     ulList.innerHTML = "";
     genGallery();
-
-};
+}
 
 //Galerijos sukurimas
-function genGallery(){
+function genGallery() {
     var imgAjax = new XMLHttpRequest();
 
     imgAjax.open("GET", "http://web-training.lt/img_api/", true);
@@ -35,23 +34,19 @@ function genGallery(){
                 console.log("f1");
                 let images = JSON.parse(imgAjax.responseText);
 
-
-                console.log(images);
-
                 for (let i = 0; i < images.length; i++) {
 
-                    let imgIndex = Math.floor(Math.random() * (i+1));
+                    let imgIndex = Math.floor(Math.random() * (i + 1));
 
                     let imgUrl = 'http://web-training.lt/img_api/img/' + images[imgIndex];
-                    console.log(imgUrl);
 
                     let imgLi = document.createElement('li');
                     let imgImg = document.createElement('img');
                     imgImg.src = imgUrl;
                     imgImg.className = "img-thumbnail";
 
-                    imgImg.addEventListener("click", function (e){
-                        e.target.src='img/default-placeholder.png';
+                    imgImg.addEventListener("click", function (e) {
+                        e.target.src = 'img/default-placeholder.png';
                     });
 
                     imgLi.appendChild(imgImg);
@@ -65,4 +60,4 @@ function genGallery(){
     };
     imgAjax.send();
     console.log("f2");
-};
+}
